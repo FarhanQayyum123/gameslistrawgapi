@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GenericMVVMRetrofitRXJava_V1.iml" filepath="$PROJECT_DIR$/.idea/modules/GenericMVVMRetrofitRXJava_V1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GenericMVVMRetrofitRXJava_V1.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GenericMVVMRetrofitRXJava_V1.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GamesListRawgApi.iml" filepath="$PROJECT_DIR$/.idea/modules/GamesListRawgApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GamesListRawgApi.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GamesListRawgApi.app.iml" />
     </modules>
   </component>
 </project>

@@ -16,4 +16,5 @@ interface APIInterface {
 
     @GET("games/{ITEM_ID}?key=" + ConfigUtils.API_KEY_TOKEN)
     fun getItemDetail(@Path("ITEM_ID") ITEM_ID: String?): Single<GameItemDetailModel?>
+
 }
