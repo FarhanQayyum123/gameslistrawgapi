@@ -55,7 +55,7 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun apiCalling(itemId: String?) {
-        if (Utils.isNetworkConnected(activity)) {
+        if (activity?.let { Utils.NetWork.isNetworkConnected(it) } == true) {
             gameReqParamModel.itemId = itemId
             mViewModel!!.callAPI(Constants.Tags.ITEM_DETAIL, true, gameReqParamModel)
         } else errorMessageShow(requireActivity().resources.getString(R.string.no_internet))

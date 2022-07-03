@@ -82,7 +82,7 @@ class MasterScreenFragment: Fragment() {
     }
 
     private fun apiCalling(page: Int) {
-        if (Utils.isNetworkConnected(activity)) {
+        if (activity?.let { Utils.NetWork.isNetworkConnected(it) } == true) {
             isLoading = !isLoading
             gameReqParamModel.page = page
             mViewModel!!.callAPI(Constants.Tags.GAMES_LIST, true, gameReqParamModel)
