@@ -19,7 +19,6 @@ import com.example.kamal.myapplication.ui.Activity.ApiRequestParam.gameReqParamM
 import com.example.kamal.myapplication.utils.Constants
 import com.example.kamal.myapplication.utils.Utils
 import com.example.kamal.myapplication.viewModel.GamesViewModel
-import java.lang.String
 import java.util.*
 
 class GamesListFragment: Fragment() {
@@ -46,7 +45,7 @@ class GamesListFragment: Fragment() {
         rvGamesList!!.layoutManager = LinearLayoutManager(activity)
         rvGamesList!!.adapter = gamesListAdapter
         // Set title here for listing screen
-        requireActivity().title = requireActivity()!!.resources.getString(R.string.master_screen)
+        requireActivity().title = requireActivity().resources.getString(R.string.master_screen)
         return view
     }
 
@@ -86,16 +85,16 @@ class GamesListFragment: Fragment() {
             isLoading = !isLoading
             gameReqParamModel.page = page
             mViewModel!!.callAPI(Constants.GAMES_LIST, true, gameReqParamModel)
-        } else errorMessageShow(requireActivity()!!.resources.getString(R.string.no_internet))
+        } else errorMessageShow(requireActivity().resources.getString(R.string.no_internet))
     }
 
     private fun setObservers() {
         // Observer for listening games list data
-        mViewModel!!.gamesList().observe(requireActivity()!!, { responseHttp -> // Here i am checking that there is no more pagination
+        mViewModel!!.gamesList().observe(requireActivity(), { responseHttp -> // Here i am checking that there is no more pagination
             if (page > 1 && responseHttp!!.results != null && (responseHttp.results?.size == 0 || responseHttp.results?.size!! < 10)) isLastPage = true
 
             // This "if" condition means no data available for listing
-            if (page == 1 && (responseHttp!!.results == null || responseHttp.results?.size == 0)) errorMessageShow(requireActivity()!!.resources.getString(R.string.no_data_available)) else {
+            if (page == 1 && (responseHttp!!.results == null || responseHttp.results?.size == 0)) errorMessageShow(requireActivity().resources.getString(R.string.no_data_available)) else {
                 responseHttp!!.results?.let { gamesList.addAll(it) }
                 gamesListAdapter!!.notifyDataSetChanged()
                 isLoading = !isLoading
@@ -105,7 +104,7 @@ class GamesListFragment: Fragment() {
             }
         })
         // Observer for listening loader hide/show
-        mViewModel!!.isLoading.observe(requireActivity()!!, { isLoading ->
+        mViewModel!!.isLoading.observe(requireActivity(), { isLoading ->
             if (isLoading != null) {
                 if (isLoading) {
                     if (page == 1) pbInitialLoader!!.visibility = View.VISIBLE else if (!isLastPage) pbLoadMore!!.visibility = View.VISIBLE
@@ -117,14 +116,14 @@ class GamesListFragment: Fragment() {
         })
 
         // Observer for listening any type of error
-        mViewModel!!.errorListener().observe(requireActivity()!!, { error ->
+        mViewModel!!.errorListener().observe(requireActivity(), { error ->
             var error = error
-            if (error == null) error = requireActivity()!!.resources.getString(R.string.something_went_wrong)
+            if (error == null) error = requireActivity().resources.getString(R.string.something_went_wrong)
             errorMessageShow(error)
         })
 
         // Observer for listening any type of error
-        mViewModel!!.getClickedItemObject().observe(requireActivity()!!, { itemObject -> (activity as Activity?)!!.loadFragment(ItemDetailFragment.newInstance(), String.valueOf(itemObject!!.id)) })
+        mViewModel!!.getClickedItemObject().observe(requireActivity(), { itemObject -> (activity as Activity?)!!.loadFragment(ItemDetailFragment.newInstance(), itemObject!!.id.toString()) })
     }
 
     private fun errorMessageShow(error: kotlin.String) {

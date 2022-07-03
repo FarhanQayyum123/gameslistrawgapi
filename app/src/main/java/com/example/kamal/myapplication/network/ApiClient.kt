@@ -3,7 +3,6 @@ package com.example.kamal.myapplication.network
 import com.example.kamal.myapplication.utils.ConfigUtils
 import com.example.kamal.myapplication.utils.Constants
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,12 +14,9 @@ object ApiClient {
     @JvmStatic
     val clientAuthentication: Retrofit?
         get() {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
             val httpClient = OkHttpClient.Builder()
             val builder = Retrofit.Builder()
                     .baseUrl(ConfigUtils.BASE_URL)
-            httpClient.addInterceptor(logging)
             httpClient.readTimeout(Constants.READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
             httpClient.connectTimeout(Constants.CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
             builder.client(httpClient.build())

@@ -32,7 +32,7 @@ class GamesListAdapter(gamesList: ArrayList<GamesListModel>, context: Context?, 
         val listViewHolder = holder as ListViewHolder
 
         // getting data from our array list in our modal class.
-        val userModal = gamesList!![position]!!
+        val userModal = gamesList[position]
 
         // on below line we are setting data to our text view.
         listViewHolder.tvID.text = "ID: " + userModal.id
@@ -51,7 +51,7 @@ class GamesListAdapter(gamesList: ArrayList<GamesListModel>, context: Context?, 
 
     override fun getItemCount(): Int {
         // returning the size of array list.
-        return gamesList!!.size
+        return gamesList.size
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -63,7 +63,7 @@ class GamesListAdapter(gamesList: ArrayList<GamesListModel>, context: Context?, 
         val rlParent: RelativeLayout = itemView.findViewById(R.id.rlParent)
         override fun onClick(v: View) {
             when (v.id) {
-                R.id.rlParent -> mViewModel?.clickedItemObject?.setValue(gamesList?.get(adapterPosition))
+                R.id.rlParent -> mViewModel?.clickedItemObject?.setValue(gamesList[adapterPosition])
             }
         }
 
