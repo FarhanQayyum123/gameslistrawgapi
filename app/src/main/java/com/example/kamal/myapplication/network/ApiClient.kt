@@ -21,8 +21,8 @@ object ApiClient {
             val builder = Retrofit.Builder()
                     .baseUrl(ConfigUtils.BASE_URL)
             httpClient.addInterceptor(logging)
-            httpClient.readTimeout(Constants.TimeOut.READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
-            httpClient.connectTimeout(Constants.TimeOut.CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            httpClient.readTimeout(Constants.READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            httpClient.connectTimeout(Constants.CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
             builder.client(httpClient.build())
             retrofit = builder
                     .baseUrl(ConfigUtils.BASE_URL)

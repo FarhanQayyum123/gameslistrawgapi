@@ -1,8 +1,7 @@
 package com.example.kamal.myapplication.model
 
-class GameRequestParamModel {
+class APIRequestParamModel {
     var page = 0
     var itemId: String? = ""
         get() = field ?: ""
-        set(value) { field = value }
 }

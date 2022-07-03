@@ -18,7 +18,7 @@ import com.example.kamal.myapplication.utils.Constants
 import com.example.kamal.myapplication.utils.Utils
 import com.example.kamal.myapplication.viewModel.GamesViewModel
 
-class GameDetailFragment : Fragment() {
+class ItemDetailFragment : Fragment() {
     private var itemId: String? = ""
     private var mViewModel: GamesViewModel? = null
     private var progressBarDetail: ProgressBar? = null
@@ -55,9 +55,9 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun apiCalling(itemId: String?) {
-        if (activity?.let { Utils.NetWork.isNetworkConnected(it) } == true) {
+        if (activity?.let { Utils.isNetworkConnected(it) } == true) {
             gameReqParamModel.itemId = itemId
-            mViewModel!!.callAPI(Constants.Tags.ITEM_DETAIL, true, gameReqParamModel)
+            mViewModel!!.callAPI(Constants.ITEM_DETAIL, true, gameReqParamModel)
         } else errorMessageShow(requireActivity().resources.getString(R.string.no_internet))
     }
 
@@ -97,8 +97,8 @@ class GameDetailFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(): GameDetailFragment {
-            return GameDetailFragment()
+        fun newInstance(): ItemDetailFragment {
+            return ItemDetailFragment()
         }
     }
 }

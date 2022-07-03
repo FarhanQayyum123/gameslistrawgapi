@@ -3,7 +3,7 @@ package com.example.kamal.myapplication.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class WebResponseHttp<T> {
+class APIResponseHttp<T> {
     @SerializedName("count")
     @Expose
     val count = 0

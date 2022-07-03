@@ -6,19 +6,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.kamal.myapplication.R
-import com.example.kamal.myapplication.model.GameRequestParamModel
+import com.example.kamal.myapplication.model.APIRequestParamModel
 
 
 class Activity : AppCompatActivity() {
 
     companion object ApiRequestParam {
-        var gameReqParamModel = GameRequestParamModel()
+        var gameReqParamModel = APIRequestParamModel()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        loadFragment(MasterScreenFragment(), "")
+        loadFragment(GamesListFragment(), "")
     }
 
     fun loadFragment(fragment: Fragment, itemId: String) {

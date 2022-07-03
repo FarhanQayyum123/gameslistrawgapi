@@ -22,7 +22,7 @@ import com.example.kamal.myapplication.viewModel.GamesViewModel
 import java.lang.String
 import java.util.*
 
-class MasterScreenFragment: Fragment() {
+class GamesListFragment: Fragment() {
 
     private var mViewModel: GamesViewModel? = null
     private val gamesList = ArrayList<GamesListModel>()
@@ -82,10 +82,10 @@ class MasterScreenFragment: Fragment() {
     }
 
     private fun apiCalling(page: Int) {
-        if (activity?.let { Utils.NetWork.isNetworkConnected(it) } == true) {
+        if (activity?.let { Utils.isNetworkConnected(it) } == true) {
             isLoading = !isLoading
             gameReqParamModel.page = page
-            mViewModel!!.callAPI(Constants.Tags.GAMES_LIST, true, gameReqParamModel)
+            mViewModel!!.callAPI(Constants.GAMES_LIST, true, gameReqParamModel)
         } else errorMessageShow(requireActivity()!!.resources.getString(R.string.no_internet))
     }
 
@@ -124,7 +124,7 @@ class MasterScreenFragment: Fragment() {
         })
 
         // Observer for listening any type of error
-        mViewModel!!.getClickedItemObject().observe(requireActivity()!!, { itemObject -> (activity as Activity?)!!.loadFragment(GameDetailFragment.newInstance(), String.valueOf(itemObject!!.id)) })
+        mViewModel!!.getClickedItemObject().observe(requireActivity()!!, { itemObject -> (activity as Activity?)!!.loadFragment(ItemDetailFragment.newInstance(), String.valueOf(itemObject!!.id)) })
     }
 
     private fun errorMessageShow(error: kotlin.String) {

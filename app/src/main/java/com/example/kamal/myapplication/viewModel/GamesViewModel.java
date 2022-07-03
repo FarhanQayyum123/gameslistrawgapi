@@ -7,12 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.kamal.myapplication.model.GameItemDetailModel;
-import com.example.kamal.myapplication.model.GameRequestParamModel;
+import com.example.kamal.myapplication.model.APIRequestParamModel;
 import com.example.kamal.myapplication.model.GamesListModel;
-import com.example.kamal.myapplication.model.WebResponseHttp;
+import com.example.kamal.myapplication.model.APIResponseHttp;
 import com.example.kamal.myapplication.network.APIInterface;
 import com.example.kamal.myapplication.network.ApiClient;
-import com.example.kamal.myapplication.repository.RetrofitRepositoryTest;
+import com.example.kamal.myapplication.repository.RetrofitRepository;
 import com.example.kamal.myapplication.utils.Constants;
 
 import java.util.ArrayList;
@@ -24,43 +24,43 @@ import retrofit2.HttpException;
 public class GamesViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel
     private MutableLiveData<GameItemDetailModel> itemObject = new MutableLiveData<>();
-    private MutableLiveData<WebResponseHttp<ArrayList<GamesListModel>>> gamesListData = new MutableLiveData<>();
+    private MutableLiveData<APIResponseHttp<ArrayList<GamesListModel>>> gamesListData = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private MutableLiveData<String> errorListener = new MutableLiveData<>();
     public MutableLiveData<GamesListModel> clickedItemObject = new MutableLiveData<>();
-    private RetrofitRepositoryTest retrofitRepo;
+    private RetrofitRepository retrofitRepo;
     private CompositeDisposable disposable;
 
     public GamesViewModel(Application application) {
         super(application);
-        retrofitRepo = new RetrofitRepositoryTest();
+        retrofitRepo = new RetrofitRepository();
         disposable = new CompositeDisposable();
     }
 
-    public void callAPI(String tag, boolean isLoad, GameRequestParamModel paramObject) {
+    public void callAPI(String tag, boolean isLoad, APIRequestParamModel paramObject) {
         APIInterface apiInterface = ApiClient.getClientAuthentication().create(APIInterface.class);
         if (isLoad)
             isLoading.setValue(true);
 
-        if (tag.equalsIgnoreCase(Constants.Tags.GAMES_LIST)) // request API for games list
-            disposable.add(retrofitRepo.callAPI(apiInterface.getGames(Constants.Const.PAGE_SIZE, String.valueOf(paramObject.getPage())), getObserverList(tag, isLoad)));
+        if (tag.equalsIgnoreCase(Constants.GAMES_LIST)) // request API for games list
+            disposable.add(retrofitRepo.callAPI(apiInterface.getGames(Constants.PAGE_SIZE, String.valueOf(paramObject.getPage())), getObserverList(tag, isLoad)));
 
-        if (tag.equalsIgnoreCase(Constants.Tags.ITEM_DETAIL)) // request API for game item detail
+        if (tag.equalsIgnoreCase(Constants.ITEM_DETAIL)) // request API for game item detail
             disposable.add(retrofitRepo.callAPI(apiInterface.getItemDetail(paramObject.getItemId()), getObserverDetail(tag, isLoad)));
     }
 
 
     // Observer for getting response through RXJava
-    public <T> DisposableSingleObserver<WebResponseHttp<T>> getObserverList(String tag, boolean isLoad) {
-        return new DisposableSingleObserver<WebResponseHttp<T>>() {
+    public <T> DisposableSingleObserver<APIResponseHttp<T>> getObserverList(String tag, boolean isLoad) {
+        return new DisposableSingleObserver<APIResponseHttp<T>>() {
             @Override
-            public void onSuccess(@NonNull WebResponseHttp<T> response) {
+            public void onSuccess(@NonNull APIResponseHttp<T> response) {
                 // Update loader here
                 if (isLoad)
                     isLoading.setValue(false);
                 // Set games list data here
-                if (tag.equalsIgnoreCase(Constants.Tags.GAMES_LIST))
-                    gamesListData.setValue((WebResponseHttp<ArrayList<GamesListModel>>) response);
+                if (tag.equalsIgnoreCase(Constants.GAMES_LIST))
+                    gamesListData.setValue((APIResponseHttp<ArrayList<GamesListModel>>) response);
             }
 
             @Override
@@ -97,7 +97,7 @@ public class GamesViewModel extends AndroidViewModel {
                 if (isLoad)
                     isLoading.setValue(false);
                 // Set game item detail data here
-                if (tag.equalsIgnoreCase(Constants.Tags.ITEM_DETAIL))
+                if (tag.equalsIgnoreCase(Constants.ITEM_DETAIL))
                     itemObject.setValue((GameItemDetailModel) response);
             }
 
@@ -127,7 +127,7 @@ public class GamesViewModel extends AndroidViewModel {
     }
 
 
-    public MutableLiveData<WebResponseHttp<ArrayList<GamesListModel>>> gamesList() {
+    public MutableLiveData<APIResponseHttp<ArrayList<GamesListModel>>> gamesList() {
         return gamesListData;
     }
 
