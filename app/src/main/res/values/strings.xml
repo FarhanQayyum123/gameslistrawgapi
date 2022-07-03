@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Games List</string>
+    <string name="not_available">Not available</string>
+    <string name="something_went_wrong">Something went wrong, please try again</string>
+    <string name="no_data_available">No data available, please try again</string>
+    <string name="no_internet">No internet connection found, please check your WIFI and try again</string>
+    <string name="master_screen">Games Listing</string>
+    <string name="detail_page">Detail page</string>
+</resources>

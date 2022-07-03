@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_8sdp">
+
+    <RelativeLayout
+        android:id="@+id/rlParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp">
+
+        <!--image view for displaying user image-->
+        <ImageView
+            android:id="@+id/ivBanner"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:scaleType="fitXY" />
+
+        <!--text view for displaying first name-->
+        <TextView
+            android:id="@+id/tvID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_toEndOf="@id/ivBanner"
+            android:layout_toRightOf="@id/ivBanner"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp" />
+
+        <!--text view for displaying last name-->
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvID"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_toEndOf="@id/ivBanner"
+            android:layout_toRightOf="@id/ivBanner"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp" />
+
+        <!--text view for displaying user email-->
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_toEndOf="@id/ivBanner"
+            android:layout_toRightOf="@id/ivBanner"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
