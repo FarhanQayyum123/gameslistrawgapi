@@ -66,9 +66,7 @@ class GamesListAdapter(gamesList: ArrayList<GamesListModel>, context: Context?, 
                 R.id.rlParent -> mViewModel?.clickedItemObject?.setValue(gamesList[adapterPosition])
             }
         }
-
         init {
-
             // initializing our variables.
             rlParent.setOnClickListener { v: View -> onClick(v) }
         }
